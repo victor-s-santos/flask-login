@@ -24,3 +24,6 @@
 
 * __Instalar as dependências:__
     - pip install -r requirements.txt;
+
+* __Subir o servidor:__
+    - python main.py;
