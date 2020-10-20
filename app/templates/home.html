@@ -1,9 +1,12 @@
+{% if current_user.is_authenticated %}
 <div>
-    <h2>Victor</h2>
+    <h2>{{current_user.name }}</h2>
+    <h2>{{current_user.email }}</h2>
     <p>Usuário logado</p>
 </div>
-
+{% else %}
 <div>
     <h2>Usuário</h2>
     <p>Usuário deslogado</p>
 </div>
+{% endif %}

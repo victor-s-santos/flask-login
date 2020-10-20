@@ -24,6 +24,25 @@ def register():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        email = request.form['email']
+        pwd = request.form['password']
+
+        if User.query.filter_by(email=email).first():
+            """Verifica se o usuário existe"""
+            if User.query.filter_by(email=email).first().verify_password(pwd):
+                """Verifica se a senha está correta"""
+                login_user(User.query.filter_by(email=email).first())
+                return redirect(url_for('home'))
+        else:
+            return redirect(url_for('register'))
+
     return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
+
 
 app.run(debug=True)
